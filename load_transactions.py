@@ -68,7 +68,7 @@ def cleanup_temp_files():
 def main():
     # Configuration
     DUCKDB_FILE_ID = "1L0E2fSEAYrpzHV3Jwt1nznjTUJAKQcV_"
-    TRANSACTION_URL = "https://storage.data.gov.my/pricecatcher/pricecatcher_2022-01.parquet"  # January 2022
+    TRANSACTION_URL = "https://storage.data.gov.my/pricecatcher/pricecatcher_2022-02.parquet"  # January 2022
     
     # Get service account credentials from environment
     credentials_json = json.loads(
@@ -90,7 +90,7 @@ def main():
         
         # Download transaction parquet
         print("Downloading transaction data...")
-        transaction_path = download_parquet(TRANSACTION_URL, "pricecatcher_2022-01.parquet")
+        transaction_path = download_parquet(TRANSACTION_URL, "pricecatcher_2022-02.parquet")
         
         # Connect to DuckDB and load transaction data
         print("Loading transaction data into DuckDB...")
