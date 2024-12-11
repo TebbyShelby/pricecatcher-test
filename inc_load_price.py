@@ -110,7 +110,7 @@ def process_monthly_file(conn, date, url):
         WITH new_records AS (
             SELECT DISTINCT t.* 
             FROM temp_price t
-            WHERE DATE(t.date) = ?
+            WHERE t.date = ?
             AND NOT EXISTS (
                 SELECT 1 
                 FROM price x 
