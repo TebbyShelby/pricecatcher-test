@@ -191,9 +191,9 @@ def main():
                 for processed_date in result['dates']:
                     conn.execute("""
                         INSERT INTO data_processing_log (processed_date, processed_at, file_url, records_loaded)
-                        VALUES (?, CURRENT_TIMESTAMP(), ?, ?)
+                        VALUES (?, NOW(), ?, ?)
                         ON CONFLICT (processed_date) DO UPDATE SET
-                        processed_at = CURRENT_TIMESTAMP(),
+                        processed_at = NOW(),
                         records_loaded = excluded.records_loaded
                     """, [processed_date, month_data['url'], result['records_loaded']])
         
