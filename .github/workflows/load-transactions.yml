@@ -23,4 +23,4 @@ jobs:
     - name: Run transaction pipeline
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-      run: python load_transactions.py
+      run: python inc_load_price.py
