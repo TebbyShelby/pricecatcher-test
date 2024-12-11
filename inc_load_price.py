@@ -166,6 +166,8 @@ def main():
         
         # Get last processed date
         last_date = get_last_processed_date(conn)
+        if isinstance(last_date, datetime):
+            last_date = last_date.date()
         current_date = datetime.now().date()
         
         # Process each missing day
