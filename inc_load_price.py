@@ -114,7 +114,7 @@ def process_monthly_file(conn, date, url):
             AND NOT EXISTS (
                 SELECT 1 
                 FROM price x 
-                WHERE DATE(x.date) = DATE(t.date)
+                WHERE x.date = t.date
                 AND x.premise_code = t.premise_code 
                 AND x.item_code = t.item_code
             )
