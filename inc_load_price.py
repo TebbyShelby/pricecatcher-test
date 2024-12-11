@@ -106,7 +106,7 @@ def process_monthly_file(conn, date, url):
     conn.execute("CREATE TEMPORARY TABLE temp_price AS SELECT * FROM read_parquet(?)", [local_path])
     
     # Filter for specific date and insert only new records
-    records_loaded = conn.execute("""
+    result = conn.execute("""
         WITH new_records AS (
             SELECT DISTINCT t.* 
             FROM temp_price t
@@ -121,7 +121,9 @@ def process_monthly_file(conn, date, url):
         )
         INSERT INTO price 
         SELECT * FROM new_records
-    """, [date.strftime('%Y-%m-%d')]).row_count
+    """, [date.strftime('%Y-%m-%d')])
+    
+    records_loaded = result.rowcount  # Changed from row_count to rowcount
     
     # Drop temporary table
     conn.execute("DROP TABLE temp_price")
